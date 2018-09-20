@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CONFIG>
+  <Package Version="4">
+    <Name Value="rtlpatch"/>
+    <Type Value="RunAndDesignTime"/>
+    <CompilerOptions>
+      <Version Value="11"/>
+      <SearchPaths>
+        <OtherUnitFiles Value="."/>
+        <UnitOutputDirectory Value="lib/$(TargetCPU)-$(TargetOS)"/>
+      </SearchPaths>
+    </CompilerOptions>
+    <Files Count="9">
+      <Item1>
+        <Filename Value="op.pas"/>
+        <UnitName Value="OP"/>
+      </Item1>
+      <Item2>
+        <Filename Value="patch.pas"/>
+        <UnitName Value="Patch"/>
+      </Item2>
+      <Item3>
+        <Filename Value="dynarray.pas"/>
+        <UnitName Value="DynArray"/>
+      </Item3>
+      <Item4>
+        <HasRegisterProc Value="True"/>
+      </Item4>
+      <Item5>
+        <Filename Value="COPYING.GPL.txt"/>
+        <Type Value="Text"/>
+      </Item5>
+      <Item6>
+        <Filename Value="COPYING.LGPL.txt"/>
+        <Type Value="Text"/>
+      </Item6>
+      <Item7>
+        <Filename Value="COPYING.modifiedLGPL.txt"/>
+        <Type Value="Text"/>
+      </Item7>
+      <Item8>
+        <Filename Value="COPYING.txt"/>
+        <Type Value="Text"/>
+      </Item8>
+      <Item9>
+        <Filename Value="info.txt"/>
+        <Type Value="Text"/>
+      </Item9>
+    </Files>
+    <RequiredPkgs Count="1">
+      <Item1>
+        <PackageName Value="FCL"/>
+      </Item1>
+    </RequiredPkgs>
+    <UsageOptions>
+      <UnitPath Value="$(PkgOutDir)"/>
+    </UsageOptions>
+    <PublishOptions>
+      <Version Value="2"/>
+      <DestinationDirectory Value="/home/andreas/private/Lazarus/packages/published/rtlpatch"/>
+    </PublishOptions>
+    <CustomOptions Items="ExternHelp" Version="2">
+      <_ExternHelp Items="Count"/>
+    </CustomOptions>
+  </Package>
+</CONFIG>
