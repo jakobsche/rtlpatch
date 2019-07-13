@@ -61,6 +61,8 @@ function GetTempFileName(const Dir: string; const Prefix: string): string;
 
 function GrayCodeOf(X: QWord): QWord;
 
+function IsExecutable(FileName: string): Boolean;
+
 {$ifdef WINDOWS}
 
 {http://www.freepascal.org/docs-html/rtl/unix/popen.html}
@@ -81,8 +83,12 @@ function GetMem(Size: PtrUint): Pointer; overload;
 
 implementation
 
-uses Process
-{$ifdef Windows}{, ShellAPI}{$endif};
+uses Process,
+{$ifdef Windows}
+  {ShellAPI}
+{$else}
+  BaseUnix
+{$endif};
 
 constructor TEnvironment.Create;
 var i: Integer;
@@ -202,6 +208,20 @@ begin
   Result := X xor (X shr 1) {Wikipedia}
 end;
 
+function IsExecutable(FileName: string): Boolean;
+{$ifdef windows}
+var
+  Rslt: TSearchRec;
+  R: Longint;
+{$endif}
+begin
+{$ifdef Windows}
+  Result := LowerCase(ExtractFileExt(FileName)) = '.exe';
+{$else}
+  Result := fpAccess(@FileName[1], X_OK) = 0
+{$endif}
+end;
+
 {$ifdef WINDOWS}
 { Die folgenden Funktionen sind in der Unit Unix deklariert, die nur fuer
   unixoide Systeme verfuegbar sind. Die Implementierung fuer Windows koennte mit
@@ -212,6 +232,7 @@ var
 
 function POpen(var F: TextFile; const Prog: Ansistring; rw: Char): Longint;
 begin
+
 end;
 
 function POpen(var F: file; const Prog: Ansistring; rw: Char): Longint;
