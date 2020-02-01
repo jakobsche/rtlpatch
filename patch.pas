@@ -15,11 +15,11 @@
 }
 { |Subversion-Dokumentation
   |------------------------
-  |$Date: 2018-09-17 11:20:37 +0200 (Mo, 17. Sep 2018) $ (letzter Aenderungszeitpunkt)
-  |$Revision: 2850 $ (letzter geaenderte Revision)
+  |$Date: 2018-12-02 03:32:33 +0100 (So, 02 Dez 2018) $ (letzter Aenderungszeitpunkt)
+  |$Revision: 2926 $ (letzter geaenderte Revision)
   |$Author: andreas $ (letzter Autor)
   |$HeadURL: svn://martina:3691/Lazarus/packages/rtlpatch/patch.pas $ (Archivadresse)
-  |$Id: patch.pas 2850 2018-09-17 09:20:37Z andreas $ (eindeutige Dateikennzeichnung) }
+  |$Id: patch.pas 2926 2018-12-02 02:32:33Z andreas $ (eindeutige Dateikennzeichnung) }
 
 unit Patch;
 
@@ -213,10 +213,12 @@ function IsExecutable(FileName: string): Boolean;
 var
   Rslt: TSearchRec;
   R: Longint;
+  x: string;
 {$endif}
 begin
 {$ifdef Windows}
-  Result := LowerCase(ExtractFileExt(FileName)) = '.exe';
+  x := LowerCase(ExtractFileExt(FileName))
+  Result := (x = '.exe') or (x = '.com') or (x = .pif) or (x = '.bat') or (x = '.msi);
 {$else}
   Result := fpAccess(@FileName[1], X_OK) = 0
 {$endif}

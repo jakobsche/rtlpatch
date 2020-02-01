@@ -15,7 +15,7 @@
 }
 { |Subversion-Dokumentation
   |------------------------
-  |$Date: 2018-09-17 11:20:37 +0200 (Mo, 17. Sep 2018) $ (letzter Aenderungszeitpunkt)
+  |$Date: 2018-09-17 11:20:37 +0200 (Mo, 17 Sep 2018) $ (letzter Aenderungszeitpunkt)
   |$Revision: 2850 $ (letzter geaenderte Revision)
   |$Author: andreas $ (letzter Autor)
   |$HeadURL: svn://martina:3691/Lazarus/packages/rtlpatch/dynarray.pas $ (Archivadresse)
