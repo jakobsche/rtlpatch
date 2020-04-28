@@ -15,7 +15,11 @@
 }
 { |Subversion-Dokumentation
   |------------------------
+<<<<<<< HEAD
   |$Date: 2018-12-02 03:32:33 +0100 (So, 02. Dez 2018) $ (letzter Aenderungszeitpunkt)
+=======
+  |$Date: 2018-12-02 03:32:33 +0100 (So, 02 Dez 2018) $ (letzter Aenderungszeitpunkt)
+>>>>>>> 4d98bf4da3d77aa24f87fe35d5f1e7c15055af6e
   |$Revision: 2926 $ (letzter geaenderte Revision)
   |$Author: andreas $ (letzter Autor)
   |$HeadURL: svn://martina:3691/Lazarus/packages/rtlpatch/patch.pas $ (Archivadresse)
@@ -53,7 +57,9 @@ procedure Rename(var f: TextFile; s: string);
 
 procedure DelTree(Dir: string);
 
+{$ifndef darwin}
 function DirectoryExists(x: string): Boolean;
+{$endif}
 
 function FindFirst(Path: string; Attr: Longint; out Rslt: TSearchRec): Longint;
 

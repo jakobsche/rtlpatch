@@ -15,10 +15,10 @@
 }
 { |Subversion-Dokumentation
   |------------------------
-  |$Date: 2018-09-17 11:20:37 +0200 (Mo, 17. Sep 2018) $ (letzter Aenderungszeitpunkt)
+  |$Date: 2018-09-17 11:20:37 +0200 (Mo, 17 Sep 2018) $ (letzter Aenderungszeitpunkt)
   |$Revision: 2850 $ (letzter geaenderte Revision)
   |$Author: andreas $ (letzter Autor)
-  |$HeadURL: svn://martina:3691/Lazarus/packages/rtlpatch/dynarray.pas $ (Archivadresse)
+  |$HeadURL: svn://192.168.2.3:3691/Lazarus/packages/rtlpatch/dynarray.pas $ (Archivadresse)
   |$Id: dynarray.pas 2850 2018-09-17 09:20:37Z andreas $ (eindeutige Dateikennzeichnung) }
 
 unit DynArray;
@@ -133,6 +133,22 @@ type
       default;
   end;
 
+  TFloatPair = record
+    X, Y: Extended;
+  end;
+
+  { TFloatPairArray }
+
+  TFloatPairArray = class(TDynamicArray)
+  private
+    function GetValues(I: Integer): TFloatPair;
+    procedure SetValues(I: Integer; AValue: TFloatPair);
+  protected
+    function ItemSize: Integer; override;
+  public
+    property Values[I: Integer]: TFloatPair read GetValues write SetValues; default;
+  end;
+
   { TInt32Matrix }
 
   TInt32Matrix = class(TDynamicMatrix)
@@ -149,6 +165,23 @@ type
   end;
 
 implementation
+
+{ TFloatPairArray }
+
+function TFloatPairArray.GetValues(I: Integer): TFloatPair;
+begin
+  Move(ItemPointers[I]^, Result, ItemSize)
+end;
+
+procedure TFloatPairArray.SetValues(I: Integer; AValue: TFloatPair);
+begin
+  Move(AValue, ItemPointers[I]^, ItemSize)
+end;
+
+function TFloatPairArray.ItemSize: Integer;
+begin
+  Result := SizeOf(TFloatPair)
+end;
 
 { TQWordArray }
 
