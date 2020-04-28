@@ -133,6 +133,22 @@ type
       default;
   end;
 
+  TFloatPair = record
+    X, Y: Extended;
+  end;
+
+  { TFloatPairArray }
+
+  TFloatPairArray = class(TDynamicArray)
+  private
+    function GetValues(I: Integer): TFloatPair;
+    procedure SetValues(I: Integer; AValue: TFloatPair);
+  protected
+    function ItemSize: Integer; override;
+  public
+    property Values[I: Integer]: TFloatPair read GetValues write SetValues; default;
+  end;
+
   { TInt32Matrix }
 
   TInt32Matrix = class(TDynamicMatrix)
@@ -149,6 +165,23 @@ type
   end;
 
 implementation
+
+{ TFloatPairArray }
+
+function TFloatPairArray.GetValues(I: Integer): TFloatPair;
+begin
+  Move(ItemPointers[I]^, Result, ItemSize)
+end;
+
+procedure TFloatPairArray.SetValues(I: Integer; AValue: TFloatPair);
+begin
+  Move(AValue, ItemPointers[I]^, ItemSize)
+end;
+
+function TFloatPairArray.ItemSize: Integer;
+begin
+  Result := SizeOf(TFloatPair)
+end;
 
 { TQWordArray }
 

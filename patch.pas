@@ -53,7 +53,9 @@ procedure Rename(var f: TextFile; s: string);
 
 procedure DelTree(Dir: string);
 
+{$ifndef darwin}
 function DirectoryExists(x: string): Boolean;
+{$endif}
 
 function FindFirst(Path: string; Attr: Longint; out Rslt: TSearchRec): Longint;
 
