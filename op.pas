@@ -81,19 +81,18 @@ end;
 
 function Parse(x: string; Separator: TCharSet; var Right: string): string;
 var
-  L, P, Q: Longint;
-  i: Char;
+  i, L: Integer;
 begin
+  x := Trimm(x);
   L := Length(x);
-  P := L + 1;
-  for i := #0 to #255 do
-    if i in Separator then begin
-      Q := Pos(i, x);
-      if Q < P then P := Q
+  Result := x;
+  Right := '';
+  for i := 1 to L do
+    if x[i] in Separator then begin
+      Result := Copy(x, 1, i - 1);
+      Right := Copy(x, i + 1, L);
+      Exit
     end;
-  Result := Copy(x, 1, P - 1);
-  for Q := P + 1 to L do if not (x[Q] in Separator) then Break;
-  Right := Copy(x, Q, L)
 end;
 
 procedure ParseStringList(x, Separator: string; var List: array of string);
